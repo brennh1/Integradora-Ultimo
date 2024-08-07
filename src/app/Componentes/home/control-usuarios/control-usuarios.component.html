@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevos Usuarios</title>
+    <link hrel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Nuevos usuarios</h1>
+            <div class="notification">
+                <img src="../../assets/campana'.png" alt="Notificación">
+                <span class="notification-count">0</span>
+            </div>
+        </div>
+        <table class="user-list" id="userList">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Numero de control</th>
+                    <th>ID</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+   
+        const newUsers = [
+            { nombre: 'Brenda Hernandez', matricula: 'GIRO631', id: '1223100474' },
+            { nombre: 'Juan Perez', matricula: 'GIRO632', id: '1223100475' },
+            { nombre: 'Maria Lopez', matricula: 'GIRO633', id: '1223100476' }
+        ];
+
+        function addUser(user) {
+            const userList = document.getElementById('userList').querySelector('tbody');
+            const userRow = document.createElement('tr');
+
+            userRow.innerHTML = `
+                <td><img src="../../assets/Usu.jpg" alt="Usuario"></td>
+                <td>Estudiante</td>
+                <td>${user.nombre} ${user.matricula}</td>
+                <td>${user.id}</td>
+                <td>
+                    <button class="accept-btn">Aceptar</button>
+                    <button class="reject-btn">Rechazar</button>
+                </td>
+            `;
+
+            userList.appendChild(userRow);
+        }
+
+       
+        function onLogin(newUser) {
+            addUser(newUser);
+
+           
+            const notificationCount = document.querySelector('.notification-count');
+            const currentCount = parseInt(notificationCount.textContent);
+            notificationCount.textContent = currentCount + 1;
+        }
+
+        
+        newUsers.forEach(user => onLogin(user));
+    </script>
+</body>
+</html>
